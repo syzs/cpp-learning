@@ -4,6 +4,8 @@ using namespace std;
 const int MAX = 3;
 void getSeconds(unsigned long *v);
 double getAvg(int *arr, int size);
+int *getRandom();
+void execGetRandom();
 
 int main()
 {
@@ -77,7 +79,7 @@ int main()
     cout << "*char" << pchar << endl;
 
     cout << "----" << endl;
-    // 指向 字符指针 的数组 来存储字符串列表
+    // 用一个 指向字符的指针数组 来存储一个字符串列表
     const char *names[MAX] = {
         "Zara Ali",
         "Hina Ali",
@@ -110,14 +112,13 @@ int main()
     // 带有 5 个元素的整型数组
     int balance[5] = {1000, 2, 3, 17, 50};
     double avg;
-
     // 传递一个指向数组的指针作为参数
     avg = getAvg(balance, 5);
-
     // 输出返回值
     cout << "Average value is: " << avg << endl;
 
     cout << "---- 函数返回指针" << endl;
+    execGetRandom();
 }
 
 void getSeconds(unsigned long *v)
@@ -139,4 +140,27 @@ double getAvg(int *arr, int size)
     avg = double(sum) / size;
 
     return avg;
+}
+
+int *getRandom()
+{
+    static int r[10];
+
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < 10; i++)
+    {
+        r[i] = rand();
+        cout << r[i] << endl;
+    }
+    return r;
+}
+
+void execGetRandom()
+{
+    int *p;
+    p = getRandom();
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "*(p+" << i << "):" << *(p + i) << endl;
+    }
 }

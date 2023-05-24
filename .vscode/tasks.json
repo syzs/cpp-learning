@@ -5,6 +5,8 @@
             "label": "C/C++: gcc 生成活动文件",
             "command": "/usr/bin/gcc",
             "args": [
+                // "-std=c++17",
+                // "-stdlib=libc++",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",

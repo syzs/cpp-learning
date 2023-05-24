@@ -6,7 +6,8 @@
 //     return 0;
 // }
 
-#include<iostream>
+#include <iostream>
+#include <map>
 using namespace std;
 
 // 函数声明
@@ -14,53 +15,72 @@ int variable();
 void storeClass();
 void staticVFunc();
 void func_loop();
+void map_get();
 
 // TODO 修饰符 volatile 告诉编译器不需要优化volatile声明的变量，让程序可以直接从内存中读取变量。对于一般的变量编译器会对变量进行优化，将内存中的变量值放在寄存器中以加快读写效率。
 // TODO signed、unsigned
 
-int main(){
-    int a = variable();
-    storeClass();
-    func_loop();
+int main()
+{
+    // int a = variable();
+    // storeClass();
+    // func_loop();
+    map_get();
     return 0;
 }
 
-void func_array(){
-    int a0[10];
-    int a1[10] = {1,2,3,4,5,6,7,8,9,10};
-    int a2[] = {1,2,3};
-
-    int a[5][2] = { {0,0}, {1,2}, {2,4}, {3,6},{4,8}};
- 
-   // 输出数组中每个元素的值                      
-   for ( int i = 0; i < 5; i++ ){
-      for ( int j = 0; j < 2; j++ )
-      {
-         cout << "a[" << i << "][" << j << "]: ";
-         cout << a[i][j]<< endl;
-      }
-   }
+void map_get()
+{
+    map<string, string> tt;
+    tt["t"] = "t";
+    auto tmp = tt.find("t");
+    if (tmp == tt.end())
+    {
+        cout << "no" << endl;
+    }
+    else
+    {
+        cout << tt["tt"] << endl;
+    }
 }
 
-void func_loop(){
+void func_array()
+{
+    int a0[10];
+    int a1[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int a2[] = {1, 2, 3};
+
+    int a[5][2] = {{0, 0}, {1, 2}, {2, 4}, {3, 6}, {4, 8}};
+
+    // 输出数组中每个元素的值
     for (int i = 0; i < 5; i++)
     {
-        cout << "for i:"<<i << endl;
+        for (int j = 0; j < 2; j++)
+        {
+            cout << "a[" << i << "][" << j << "]: ";
+            cout << a[i][j] << endl;
+        }
     }
-    
-   int  t=5;
+}
+
+void func_loop()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "for i:" << i << endl;
+    }
+
+    int t = 5;
     while (t--)
     {
-        cout << "while t:" <<t << endl;
+        cout << "while t:" << t << endl;
     }
 
     int x = 5;
     do
     {
-        cout<< "do x:" << x<<endl;
+        cout << "do x:" << x << endl;
     } while (x--);
-    
-    
 }
 
 /**
@@ -73,7 +93,7 @@ extern
 mutable
 thread_local (C++11)
 从 C++ 17 开始，auto 关键字不再是 C++ 存储类说明符，且 register 关键字被弃用。
- * 
+ *
  */
 
 static int tcount = 10; /* 文件内的全局变量，仅在hello.cpp 中全局变量 */
@@ -81,7 +101,8 @@ static int tcount = 10; /* 文件内的全局变量，仅在hello.cpp 中全局�
 // extern 修饰符通常用于当有两个或多个文件共享相同的全局变量或函数的时候
 extern void write_extern();
 int ecount;
-void storeClass(){
+void storeClass()
+{
     // auto:1、初始化表达式自动推断被声明的变量的类型；2、声明函数时函数返回值的占位符？？
     // auto f = 3.14;
     // cout << f<< "\n";
@@ -98,16 +119,16 @@ void storeClass(){
     write_extern();
 }
 
-void staticVFunc (){
-    static int i=5;
+void staticVFunc()
+{
+    static int i = 5;
     i++;
     cout << "i:" << i << "count:" << tcount << endl;
 }
 
-
 /**
  * @brief 常量、变量、数据类型、作用域、修饰符
- * 
+ *
  */
 // 类型别名
 typedef int int_alias;
@@ -115,17 +136,18 @@ typedef int int_alias;
 // 常量，#define预处理器
 #define VALUE0 10
 // 常量，const 声明。const 类型的对象在程序执行期间不能被修改改变。
-const int VALUE1 = 20; 
-const int_alias VALUE2= 30;
+const int VALUE1 = 20;
+const int_alias VALUE2 = 30;
 
-int variable(){
+int variable()
+{
     std::cout << "Hello cpp\n";
     std::cout << VALUE0 << std::endl;
-    std::cout << VALUE1 <<std::endl;
-    std::cout << VALUE2 <<std::endl;
+    std::cout << VALUE1 << std::endl;
+    std::cout << VALUE2 << std::endl;
 
     int a = -1;
-    std::cout << a <<std::endl;
+    std::cout << a << std::endl;
 
     short int i;          // 有符号短整数
     short unsigned int j; // 无符号短整数
